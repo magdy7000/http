@@ -1,0 +1,737 @@
+
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egyptian Nights - شبكة التواصل الاجتماعي</title>
+    <style>
+        :root {
+            --primary-color: #f39c12;
+            --secondary-color: #e67e22;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --success-color: #2ecc71;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark-color), var(--secondary-color));
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-left: 10px;
+        }
+        
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+        }
+        
+        .user-actions a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+        
+        .user-actions a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Main Content Layout */
+        .main-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            gap: 20px;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+        }
+        
+        .profile-card {
+            text-align: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .profile-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+        
+        .profile-card h3 {
+            margin: 10px 0 5px;
+        }
+        
+        .profile-card p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .sidebar-menu {
+            margin-top: 15px;
+        }
+        
+        .sidebar-menu h4 {
+            margin: 15px 0 10px;
+            color: var(--dark-color);
+            font-size: 16px;
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 8px;
+        }
+        
+        .sidebar-menu a {
+            display: block;
+            padding: 8px 10px;
+            color: #555;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--light-color);
+            color: var(--secondary-color);
+        }
+        
+        .sidebar-menu i {
+            margin-left: 8px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content Styles */
+        .content {
+            flex-grow: 1;
+        }
+        
+        .create-post {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .post-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-input img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+        
+        .post-input textarea {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            resize: none;
+            height: 40px;
+            outline: none;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            color: #555;
+            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+        
+        .post-action:hover {
+            background-color: var(--light-color);
+        }
+        
+        .post-action i {
+            margin-left: 5px;
+        }
+        
+        /* Posts Feed */
+        .post {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+        
+        .post-user {
+            flex-grow: 1;
+        }
+        
+        .post-user h4 {
+            margin: 0 0 3px;
+        }
+        
+        .post-user p {
+            margin: 0;
+            color: #777;
+            font-size: 13px;
+        }
+        
+        .post-menu {
+            color: #777;
+            cursor: pointer;
+        }
+        
+        .post-content {
+            margin-bottom: 15px;
+        }
+        
+        .post-image {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            color: #777;
+            font-size: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 10px;
+        }
+        
+        .post-actions button {
+            background: none;
+            border: none;
+            color: #555;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+        
+        .post-actions button:hover {
+            background-color: var(--light-color);
+        }
+        
+        .post-actions i {
+            margin-left: 5px;
+        }
+        
+        /* Right Sidebar */
+        .right-sidebar {
+            width: 300px;
+        }
+        
+        .sidebar-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-title {
+            margin: 0 0 15px;
+            font-size: 18px;
+            color: var(--dark-color);
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .friend-request {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .friend-request img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+        
+        .friend-info {
+            flex-grow: 1;
+        }
+        
+        .friend-info h5 {
+            margin: 0 0 3px;
+        }
+        
+        .friend-info p {
+            margin: 0;
+            color: #777;
+            font-size: 13px;
+        }
+        
+        .friend-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .friend-actions button {
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .confirm-btn {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        /* Events Section */
+        .event {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .event:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .event-date {
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            float: right;
+            margin-left: 10px;
+        }
+        
+        .event-date .day {
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 1;
+        }
+        
+        .event-date .month {
+            font-size: 10px;
+            line-height: 1;
+        }
+        
+        .event-info h5 {
+            margin: 0 0 3px;
+        }
+        
+        .event-info p {
+            margin: 0;
+            color: #777;
+            font-size: 13px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            font-size: 14px;
+            color: #bdc3c7;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/50x50?text=EN" alt="Egyptian Nights Logo">
+                <h1>Egyptian Nights</h1>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="ابحث في Egyptian Nights...">
+            </div>
+            
+            <div class="user-actions">
+                <a href="#"><i class="fas fa-user"></i> محمد أحمد</a>
+                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-card">
+                <img src="https://via.placeholder.com/150?text=MA" alt="Profile Picture">
+                <h3>محمد أحمد</h3>
+                <p>القاهرة، مصر</p>
+            </div>
+            
+            <div class="sidebar-menu">
+                <h4>القائمة الرئيسية</h4>
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-home"></i> الصفحة الرئيسية</a></li>
+                    <li><a href="#"><i class="fas fa-user-friends"></i> الأصدقاء</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> المجموعات</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> الأحداث</a></li>
+                    <li><a href="#"><i class="fas fa-images"></i> الصور</a></li>
+                    <li><a href="#"><i class="fas fa-video"></i> الفيديوهات</a></li>
+                </ul>
+                
+                <h4>الاهتمامات</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-futbol"></i> الرياضة</a></li>
+                    <li><a href="#"><i class="fas fa-music"></i> الموسيقى</a></li>
+                    <li><a href="#"><i class="fas fa-utensils"></i> الطعام</a></li>
+                    <li><a href="#"><i class="fas fa-plane"></i> السفر</a></li>
+                </ul>
+                
+                <h4>الإعدادات</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-cog"></i> الإعدادات</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> المساعدة</a></li>
+                    <li><a href="#"><i class="fas fa-moon"></i> الوضع الليلي</a></li>
+                </ul>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="content">
+            <!-- Create Post -->
+            <div class="create-post">
+                <div class="post-input">
+                    <img src="https://via.placeholder.com/150?text=MA" alt="User Image">
+                    <textarea placeholder="ما الذي يدور في ذهنك، محمد؟"></textarea>
+                </div>
+                
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="fas fa-image"></i> صورة
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-video"></i> فيديو
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-smile"></i> شعور/نشاط
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-map-marker-alt"></i> موقع
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Posts Feed -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://via.placeholder.com/150?text=SA" alt="User Image">
+                    <div class="post-user">
+                        <h4>سارة علي</h4>
+                        <p>منذ ساعتين · <i class="fas fa-globe-americas"></i></p>
+                    </div>
+                    <div class="post-menu">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                
+                <div class="post-content">
+                    <p>صباح الخير يا أصدقاء! اليوم كان يوماً رائعاً في الإسكندرية. الطقس كان جميلاً والبحر هادئ. هل لدى أحدكم توصيات لأماكن يجب زيارتها هنا؟</p>
+                </div>
+                
+                <img src="https://via.placeholder.com/600x400?text=Alexandria+View" alt="Post Image" class="post-image">
+                
+                <div class="post-stats">
+                    <span><i class="fas fa-thumbs-up"></i> ١٢٤ إعجاب</span>
+                    <span>٤٨ تعليق</span>
+                    <span>٧ مشاركة</span>
+                </div>
+                
+                <div class="post-actions">
+                    <button><i class="fas fa-thumbs-up"></i> أعجبني</button>
+                    <button><i class="fas fa-comment"></i> تعليق</button>
+                    <button><i class="fas fa-share"></i> مشاركة</button>
+                </div>
+            </div>
+            
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://via.placeholder.com/150?text=AK" alt="User Image">
+                    <div class="post-user">
+                        <h4>أحمد كمال</h4>
+                        <p>منذ ٥ ساعات · <i class="fas fa-user-friends"></i></p>
+                    </div>
+                    <div class="post-menu">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                </div>
+                
+                <div class="post-content">
+                    <p>شاركونا في حدثنا الجديد "ليالي مصرية" يوم الجمعة القادم في دار الأوبرا المصرية. سيكون هناك فنانين كبار وعروض فنية رائعة. للحجز والاستعلام: ٠١٠٠١٢٣٤٥٦٧</p>
+                </div>
+                
+                <div class="post-stats">
+                    <span><i class="fas fa-thumbs-up"></i> ٢٣٤ إعجاب</span>
+                    <span>٨٩ تعليق</span>
+                    <span>٤٥ مشاركة</span>
+                </div>
+                
+                <div class="post-actions">
+                    <button><i class="fas fa-thumbs-up"></i> أعجبني</button>
+                    <button><i class="fas fa-comment"></i> تعليق</button>
+                    <button><i class="fas fa-share"></i> مشاركة</button>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="sidebar-box">
+                <h3 class="sidebar-title">طلبات الصداقة</h3>
+                
+                <div class="friend-request">
+                    <img src="https://via.placeholder.com/150?text=NM" alt="User Image">
+                    <div class="friend-info">
+                        <h5>نورا محمد</h5>
+                        <p>٥ أصدقاء مشتركين</p>
+                    </div>
+                    <div class="friend-actions">
+                        <button class="confirm-btn">قبول</button>
+                        <button class="delete-btn">حذف</button>
+                    </div>
+                </div>
+                
+                <div class="friend-request">
+                    <img src="https://via.placeholder.com/150?text=HA" alt="User Image">
+                    <div class="friend-info">
+                        <h5>حسام أحمد</h5>
+                        <p>صديق واحد مشترك</p>
+                    </div>
+                    <div class="friend-actions">
+                        <button class="confirm-btn">قبول</button>
+                        <button class="delete-btn">حذف</button>
+                    </div>
+                </div>
+                
+                <a href="#" style="display: block; text-align: center; margin-top: 10px; color: var(--secondary-color); text-decoration: none;">عرض الكل</a>
+            </div>
+            
+            <div class="sidebar-box">
+                <h3 class="sidebar-title">الأحداث القادمة</h3>
+                
+                <div class="event">
+                    <div class="event-date">
+                        <div class="day">١٥</div>
+                        <div class="month">يونيو</div>
+                    </div>
+                    <div class="event-info">
+                        <h5>حفل موسيقى مصرية</h5>
+                        <p>٨:٠٠ مساءً - القاهرة</p>
+                    </div>
+                </div>
+                
+                <div class="event">
+                    <div class="event-date">
+                        <div class="day">٢٠</div>
+                        <div class="month">يونيو</div>
+                    </div>
+                    <div class="event-info">
+                        <h5>معرض الفنون التشكيلية</h5>
+                        <p>١٠:٠٠ صباحاً - الإسكندرية</p>
+                    </div>
+                </div>
+                
+                <div class="event">
+                    <div class="event-date">
+                        <div class="day">٢٥</div>
+                        <div class="month">يونيو</div>
+                    </div>
+                    <div class="event-info">
+                        <h5>ندوة عن التاريخ المصري</h5>
+                        <p>٦:٠٠ مساءً - الأقصر</p>
+                    </div>
+                </div>
+                
+                <a href="#" style="display: block; text-align: center; margin-top: 10px; color: var(--secondary-color); text-decoration: none;">عرض الكل</a>
+            </div>
+            
+            <div class="sidebar-box">
+                <h3 class="sidebar-title">الأصدقاء النشطين</h3>
+                
+                <div class="friend-request">
+                    <img src="https://via.placeholder.com/150?text=YM" alt="User Image">
+                    <div class="friend-info">
+                        <h5>ياسمين محمود</h5>
+                        <p>نشط الآن</p>
+                    </div>
+                    <div class="friend-actions">
+                        <button style="background-color: var(--primary-color); color: white;">مراسلة</button>
+                    </div>
+                </div>
+                
+                <div class="friend-request">
+                    <img src="https://via.placeholder.com/150?text=OS" alt="User Image">
+                    <div class="friend-info">
+                        <h5>عمرو سعيد</h5>
+                        <p>نشط منذ ١٠ دقائق</p>
+                    </div>
+                    <div class="friend-actions">
+                        <button style="background-color: var(--primary-color); color: white;">مراسلة</button>
+                    </div>
+                </div>
+                
+                <div class="friend-request">
+                    <img src="https://via.placeholder.com/150?text=LA" alt="User Image">
+                    <div class="friend-info">
+                        <h5>ليلى أحمد</h5>
+                        <p>نشط منذ ساعة</p>
+                    </div>
+                    <div class="friend-actions">
+                        <button style="background-color: var(--primary-color); color: white;">مراسلة</button>
+                    </div>
+                </div>
+                
+                <a href="#" style="display: block; text-align: center; margin-top: 10px; color: var(--secondary-color); text-decoration: none;">عرض الكل</a>
+            </div>
+        </aside>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">الصفحة الرئيسية</a>
+            <a href="#">عن Egyptian Nights</a>
+            <a href="#">وظائف</a>
+            <a href="#">سياسة الخصوصية</a>
+            <a href="#">الشروط والأحكام</a>
+            <a href="#">مساعدة</a>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 Egyptian Nights. جميع الحقوق محفوظة.
+        </div>
+    </footer>
+</body>
+</html>
